@@ -23,7 +23,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get update && apt-get install -y --no-install-recommends kubectl && \
     cd /tmp && \
     git clone https://www.agwa.name/git/git-crypt.git && \
-    cd /tmp/git-crypt && make && make install
+    cd /tmp/git-crypt && make && make install && \
+    rm -rf /tmp/git-crypt /var/lib/apt/lists /var/cache/apt/archives
 
+RUN mkdir /.kube && chmod g+rwX /.kube
+
+USER 1001
 ENTRYPOINT [ "kubectl" ]
 CMD [ "--help" ]
