@@ -30,5 +30,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN mkdir /.kube && chmod g+rwX /.kube
 
 USER 1001
-ENTRYPOINT [ "kubectl" ]
-CMD [ "--help" ]
+ENTRYPOINT [ "/bin/bash", "-c" ]
+CMD [ "bash" ]
